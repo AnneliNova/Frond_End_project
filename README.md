@@ -1,1 +1,2 @@
 # Frond_End_project
+Pinoplast: відповідаю шрифти, фон та загальний вигляд
