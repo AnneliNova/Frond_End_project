@@ -1,1 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+    background-color: whitesmoke;
+}
+
+/* гія у старт меню поміняти дизайн */
+.start-menu {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.start-menu .text {
+    font-size: 48px;
+}
+
+.start-btn {
+    color: white;
+    cursor: pointer;
+    border: 2px solid rgb(0, 145, 7);
+    font-size: 30px;
+    padding: .5em;
+    background: rgb(8, 238, 8);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 32px;
+    transition: box-shadow 0.25s ease, padding 0.25s ease, transform 0.25s ease;
+}
+
+.start-btn:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    padding: .65em;
+    transform: translateY(-4px);
+}
