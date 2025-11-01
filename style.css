@@ -1,1 +1,28 @@
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+header {
+    width: 100%; 
+    position: relative; 
+    height: 116px;
+    background: linear-gradient(90deg, #727272 0%, #C4C3C3 69.23%, #727272 100%);
+    display: flex;
+    align-items: center; 
+    padding-left: 20px;
+}
+
+.title {
+    color: white;
+    font-size: 24px;
+}
+
+.header-2 {
+    width: 100%;
+    position: relative;
+    height: 92px;
+    background: linear-gradient(90deg, rgba(0, 107, 248, 0.67) 33.65%, rgba(1, 56, 129, 0.67) 85.1%);
+}
