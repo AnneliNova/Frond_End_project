@@ -1,25 +1,34 @@
-<!DOCTYPE html>
-<head>
-    <meta charset='UTF-8'>
-     <link rel="stylesheet" href="style.css">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title></title>
-</head>
-<body>
-    <header>
-        <div class="head-1">
-            <p>Онлайн щоденник</p>
-        </div>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Online-register</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <p class="title">Онлайн щоденник</p>
+        </header>
+        <main>
+        <div class="header-2">
+            <p class="menu title-2">Розклад занять</p>
+            <a href='#' class="menu title-3">Home</a>
+            <a href="#" class="menu title-3">Contact</a>
 
-        <div class="head-2">
-            <p>Розклад занять</p>
-            <p>Home</p>
-            <p>Contact</p>
-        </div>
-    </header>
+            <label class="switch menu title-3">
+                <input type="checkbox" class="toggle" id="myToggle">
+                <span class="slider"></span>
+            </label>
 
-    <main>
-        <div class="week"></div>
-        <div class="workplace"></div>
-    </main>
-</body>
+        </div>
+        <div class="days main"></div>
+
+        <div class="workplace main">
+            
+            <div class="shedule">
+            </div>
+
+        </div>
+        </main>
+        <script src="script.js"></script>
+    </body>
+</html>
