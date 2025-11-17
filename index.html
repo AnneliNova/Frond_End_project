@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Online-register</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <p class="title">Онлайн щоденник</p>
+        </header>
+        <main>
+        <div class="header-2">
+            <p class="menu title-2">Розклад занять</p>
+            <a href='#' class="menu title-3">Home</a>
+            <a href="contacts.html" class="menu title-3">Contact</a>
+
+            <label class="switch menu title-3">
+                <input type="checkbox" class="toggle" id="myToggle">
+                <span class="slider"></span>
+            </label>
+
+        </div>
+        <div class="days main"></div>
+
+        <div class="workplace main">
+            <div class="main-container">
+                <div class="add-lesson-container">
+                    <p class="text">Додати урок</p>
+                    <input type="text" class="name" value="Додати урок">
+                    <button class="add-lesson-btn">Додати</button>
+                </div>
+                <div class="add-homework-container">
+                    <p class="text">Додайте урок</p>
+                    <select class="choose-lesson">
+                        <option value="example" selected>Виберіть предмет</option>
+                        <option value="example">example</option>
+                        <option value="example">example</option>
+                    </select>
+                    <input type="text" class="name" value="Додати домашку">
+                    <button class="add-homework-btn">Додати</button>
+                </div>
+            </div>
+            
+            <div class="shedule">
+            </div>
+
+        </div>
+        </main>
+        <script src="script.js"></script>
+    </body>
+</html>
