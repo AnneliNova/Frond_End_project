@@ -169,12 +169,12 @@ body.dark-mode .day-btn.active {
 }
   
 .toggle:checked + .slider {
-    background-color: rgb(227, 137, 191);
+    background-color: rgb(86, 63, 187);
 }
   
 .toggle:checked + .slider:before {
-    transform: translateX(30px);
-}
+    transform: translateX(30px); 
+ }
 
 body{
     background-color: aliceblue;
