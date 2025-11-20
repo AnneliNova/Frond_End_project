@@ -12,7 +12,7 @@
         <div class="header-2">
             <p class="menu title-2">Розклад занять</p>
             <a href='#' class="menu title-3">Home</a>
-            <a href="contacts.html" class="menu title-3">Contact</a>
+            <a href="contact.html" class="menu title-3">Contact</a>
 
             <label class="switch menu title-3">
                 <input type="checkbox" class="toggle" id="myToggle">
@@ -20,7 +20,17 @@
             </label>
 
         </div>
-        <div class="days main"></div>
+        
+        <div class="days main">
+            <h3>Виберіть День</h3>
+            <div class="days-container">
+                <button class="day-btn" data-day="Понеділок">Пн</button>
+                <button class="day-btn" data-day="Вівторок">Вт</button>
+                <button class="day-btn" data-day="Середа">Ср</button>
+                <button class="day-btn" data-day="Четвер">Чт</button>
+                <button class="day-btn" data-day="П'ятниця">Пт</button>
+            </div>
+        </div>
 
         <div class="workplace main">
             <div class="main-container">
@@ -33,8 +43,6 @@
                     <p class="text">Додайте урок</p>
                     <select class="choose-lesson">
                         <option value="example" selected>Виберіть предмет</option>
-                        <option value="example">example</option>
-                        <option value="example">example</option>
                     </select>
                     <input type="text" class="name" value="Додати домашку">
                     <button class="add-homework-btn">Додати</button>
@@ -54,4 +62,3 @@
         <script src="script.js"></script>
     </body>
 </html>
-
