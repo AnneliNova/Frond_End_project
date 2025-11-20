@@ -1,17 +1,3 @@
-// const toggle = document.getElementById('myToggle');
-
-// toggle.addEventListener('change', () => {
-//     if (toggle.checked) {
-//         window.location.href = 'theme.html';
-//     } else {
-//         window.location.href = 'index.html';
-//     }
-// });
-
-// if (window.location.href.includes('theme.html')) {
-//     toggle.checked = true;
-// }
-
 function setCookie(name, value, days = 30) {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -19,7 +5,6 @@ function setCookie(name, value, days = 30) {
     document.cookie = name + "=" + encodeURIComponent(JSON.stringify(value)) + ";" + expires + ";path=/";
 }
 
-<<<<<<< HEAD
 function getCookie(name) {
     const nameEQ = name + "=";
     const cookies = document.cookie.split(';');
@@ -134,8 +119,6 @@ function display() {
 }
 
 window.addEventListener('load', display);
-=======
-
 
 
 
@@ -191,5 +174,3 @@ function renderSchedule() {
 }
 
 renderSchedule();
-
->>>>>>> 917e5a5f7c4bb024f2dd0302ad1d57ccbb496d6a
