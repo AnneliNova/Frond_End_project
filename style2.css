@@ -1,19 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 *{
     margin: 0;
     padding: 0;
+    font-family: 'Montserrat';
 }
 
 header{
   width: 100%;
   height: 5em;
-
   background: linear-gradient(90deg, #727272 0%, #C4C3C3 69.23%, #727272 100%);
+}
+
+.days {
+    width: 300px;
+    position: absolute;
+    left: 40px;
+    top: 11em;
+    bottom: 40px;
+    border-radius: 15px;
+    background-color: #8CB1B1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.days h3 {
+    margin: 0 0 20px 0;
+    text-align: center;
+    color: #000;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.days-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.day-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #C1C1C2;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #000;
+}
+
+.day-btn:hover {
+    background-color: #A0A0A1;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.day-btn.active {
+    background-color: #7A8EBA;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .days {
+    background-color: #2d2d2d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .days h3,
+body.dark-mode .shedule h3,
+body.dark-mode .shedule h4 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .day-btn {
+    background-color: #444;
+    color: #e0e0e0;
+}
+
+body.dark-mode .day-btn:hover {
+    background-color: #555;
+}
+
+body.dark-mode .day-btn.active {
+    background-color: #5A6BA0;
 }
 
 .title{
     color: black;
     font-size: 2em;
-    padding: 0.5em
+    padding: 0.5em;
 }
 
 .header-2{
@@ -22,7 +99,6 @@ header{
   display: flex;
   align-items: center;
   padding: 0.1em;
-
   background: linear-gradient(90deg, rgba(0, 107, 248, 0.67) 33.65%, rgba(1, 56, 129, 0.67) 85.1%);
 }
 
@@ -42,17 +118,10 @@ header{
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* gap: 30px; */
     font-size: 1em;
 }
 
 .switch {
-    --input-focus: #2d8cf0;
-    --font-color: #323232;
-    --font-color-sub: #666;
-    --bg-color: #fff;
-    --bg-color-alt: #666;
-    --main-color: #323232;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -61,15 +130,15 @@ header{
     gap: 30px;
     width: 50px;
     height: 20px;
-  }
+}
   
-  .toggle {
+.toggle {
     opacity: 0;
     width: 0;
     height: 0;
-  }
+}
   
-  .slider {
+.slider {
     box-sizing: border-box;
     border-radius: 5px;
     border: 2px solid black;
@@ -82,9 +151,9 @@ header{
     bottom: 0;
     background-color: rgb(166, 166, 239);
     transition: 0.3s;
-  }
+}
   
-  .slider:before {
+.slider:before {
     box-sizing: border-box;
     position: absolute;
     content: "";
@@ -97,29 +166,19 @@ header{
     background-color: rgb(166, 166, 239);
     box-shadow: 0 3px 0 rgb(81, 77, 77);
     transition: 0.3s;
-  }
+}
   
-  .toggle:checked + .slider {
+.toggle:checked + .slider {
     background-color: rgb(227, 137, 191);
-  }
+}
   
-  .toggle:checked + .slider:before {
+.toggle:checked + .slider:before {
     transform: translateX(30px);
-  }
-
+}
 
 body{
-    background-color: aliceblue
+    background-color: aliceblue;
 }  
-
-.days {
-    width: 300px;
-    position: absolute;
-    left: 40px;
-    top: 11em;
-    bottom: 40px;
-    border-radius: 15px;
-}
 
 .workplace {
     position: absolute;
@@ -128,6 +187,7 @@ body{
     right: 40px;
     bottom: 40px;
     border-radius: 15px;
+    background-color: #8CB1B1;
 }
 
 .shedule {
@@ -138,7 +198,6 @@ body{
     top: 25px;
     border-radius: 15px;
 }
-
 
 .modal-overlay {
   position: fixed; 
@@ -159,7 +218,7 @@ body{
   background-color: #ffffff;
   border-radius: 8px; 
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); 
-  border: solid ;
+  border: solid;
   overflow: hidden; 
   display: flex;
   flex-direction: column;
@@ -219,7 +278,6 @@ body{
   color: #555;
 }
 
-
 .action-button {
   padding: 8px 15px;
   background-color: #007bff;
@@ -228,15 +286,6 @@ body{
   border-radius: 4px;
   cursor: pointer;
   font-weight: 600;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
-.workplace {
-    font-family: 'Roboto', sans-serif;
-    background-color: #8CB1B1;
-    margin: 0;
-    padding: 0;
 }
 
 .main-container {
@@ -249,6 +298,56 @@ body{
 .add-lesson-container,
 .add-homework-container {
     margin-left: 60px;
+}
+
+body.dark-mode {
+    background-color: #1a1a1a;
+}
+
+body.dark-mode header {
+    background: linear-gradient(90deg, #2a2a2a 0%, #3a3a3a 69.23%, #2a2a2a 100%);
+}
+
+body.dark-mode .title {
+    color: #e0e0e0;
+}
+
+body.dark-mode .header-2 {
+    background: linear-gradient(90deg, rgba(20, 60, 120, 0.8) 33.65%, rgba(15, 40, 90, 0.8) 85.1%);
+}
+
+body.dark-mode .menu {
+    color: #e0e0e0;
+}
+
+body.dark-mode .workplace {
+    background-color: #2d2d2d;
+}
+
+body.dark-mode .text {
+    color: #e0e0e0;
+}
+
+body.dark-mode .name,
+body.dark-mode .choose-lesson {
+    background-color: #444;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+
+body.dark-mode .add-lesson-btn,
+body.dark-mode .add-homework-btn {
+    background-color: #5A6BA0;
+    color: #e0e0e0;
+}
+
+body.dark-mode .add-lesson-btn:hover,
+body.dark-mode .add-homework-btn:hover {
+    background-color: #4a5a90;
+}
+
+body.dark-mode .shedule p {
+    color: #b0b0b0;
 }
 
 .text {
@@ -265,9 +364,16 @@ body{
     border: none;
     background-color: #C1C1C2;
     font-size: 15px;
-    font-family: 'Roboto', serif;
+    font-family: 'Montserrat', serif;
     margin-bottom: 10px;
     display: block;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.choose-lesson:hover, 
+.name:hover {
+  transform: translateY(-2px);
 }
 
 .add-lesson-btn,
@@ -278,8 +384,8 @@ body{
     padding: 6px 18px;
     font-size: 16px;
     cursor: pointer;
-    font-family: 'Roboto', serif;
-    display: block;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
 }
 
 .add-lesson-btn:hover,
