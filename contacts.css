@@ -8,37 +8,39 @@
     display: flex; 
     justify-content: center; 
     align-items: center;    
-    z-index: 1000;
+
 }
 
 .contact-modal {
-    width: 388px;
-    height: 441px; 
-    background-color: #ffffff;
-    border-radius: 8px; 
+    width: 350px;
+    height: 450px;
+    background-color: #D9D9D9;
+    border-radius: 20px; 
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); 
-    border: solid ;
     overflow: hidden; 
     display: flex;
     flex-direction: column;
+    border: 4px solid #4E87A3
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    border-bottom: 1px solid #ddd; 
+    padding: 23px 20px;
+    border-bottom: 1px solid #b1b1b1; 
 }
 
 .contact-title {
     color: #333;
-    font-size: 1.2rem;
+    font-size: 1.7rem;
     margin: 0;
+    display: flex;
+    justify-content: center;
 }
 
-.close-btn {
-    font-size: 1.2rem;
+.close-button {
+    font-size: 41px; 
     color: #666;
     cursor: pointer;
 }
@@ -50,31 +52,37 @@
 .social-link {
     display: flex;
     align-items: center;
-    padding: 10px 15px;
+    padding: 20px 15px;
     margin-bottom: 10px;
-    background-color: #f8f9fa; 
+    background-color: #f8f9fab0; 
     border-radius: 6px;
     transition: background-color 0.3s;
     cursor: pointer;
 }
 
+.link-for-social{
+    text-decoration: none;
+    color: inherit;
+}
+
 .social-link:hover {
-    background-color: #e9ecef;
+    background-color: #ffffff;
 }
 
 .social-icon {
-    font-size: 20px;
+    font-size: 30px;
     margin-right: 15px;
-    min-width: 20px;
+    min-width: 10px;
 }
 
 .fa-instagram { color: #E4405F; }
 .fa-facebook { color: #1877F2; }
 .fa-telegram-plane { color: #0088CC; }
+.fa-phone {color: #000000;}
 
 .social-name {
-    font-size: 1rem;
-    color: #555;
+    font-size: 1.5rem;
+    color: #141414;
 }
 
 
