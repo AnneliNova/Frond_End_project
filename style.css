@@ -199,6 +199,57 @@ body{
     border-radius: 15px;
 }
 
+body.dark-mode .modal-overlay {
+    background-color: #1a1a1a; 
+}
+
+body.dark-mode .contact-modal {
+    background-color: #2d2d2d; 
+    box-shadow: 0 5px 20px rgba(87, 87, 87, 0.2); 
+    border: 4px solid #143c78
+}
+
+body.dark-mode .modal-header {
+    border-bottom: 1px solid #535353; 
+}
+
+body.dark-mode .contact-title {
+    color: #e0e0e0;
+}
+
+body.dark-mode .close-button {
+    color: #b1b1b1;
+}
+
+
+body.dark-mode .social-link {
+    background-color: #505050; 
+}
+
+body.dark-mode .link-for-social{
+    text-decoration: none;
+    color: inherit;
+}
+
+body.dark-mode .social-link:hover {
+    background-color: #ffffff;
+}
+
+body.dark-mode .fa-instagram { color: #ff8787; }
+body.dark-mode .fa-facebook { color: #7dc1e0; }
+body.dark-mode .fa-telegram-plane { color: #84e6ff; }
+body.dark-mode .fa-phone {color: #d7f0c6;}
+
+body.dark-mode .social-name {
+    color: #e0e0e0;
+}
+
+
+body.dark-mode .action-button {
+    background-color: #007bff;
+    color: white;
+}
+
 .modal-overlay {
     position: fixed; 
     top: 0;
