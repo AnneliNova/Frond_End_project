@@ -120,14 +120,6 @@ function display() {
 
 window.addEventListener('load', display);
 
-
-
-
-
-
-
-
-
 const numTasks = 8;
 const scheduleList = document.getElementById('schedule-list');
 const storageKey = 'schedule_general'; 
