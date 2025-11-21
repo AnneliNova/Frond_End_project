@@ -32,6 +32,7 @@ const homeworkInput = document.querySelector('.add-homework-container .name');
 const dynamicListDiv = document.getElementById('dynamic-list');
 const staticScheduleList = document.getElementById('static-schedule-list');
 const toggleSwitch = document.querySelector('#myToggle');
+const storageKey = 'schedule_general';
 
 const savedTheme = getCookie('theme');
 if (savedTheme === 'dark') {
@@ -78,6 +79,17 @@ if (addHomeworkBtn) {
     });
 }
 
+function loadTaskState(key, taskId) {
+    const state = JSON.parse(localStorage.getItem(key) || '{}');
+    return state[taskId] === true;
+}
+
+function saveTaskState(key, taskId, isChecked) {
+    const state = JSON.parse(localStorage.getItem(key) || '{}');
+    state[taskId] = isChecked;
+    localStorage.setItem(key, JSON.stringify(state));
+}
+
 function display() {
     dynamicListDiv.innerHTML = ''; 
     
@@ -89,8 +101,11 @@ function display() {
         lessons.forEach((lesson, index) => {
             const p = document.createElement('p');
             p.textContent = `${index + 1}. ${lesson}`;
-            p.style.cursor = 'pointer';
             p.addEventListener('click', () => {
+                const lessonName = lessons[index];
+                homework = homework.filter(h => h.lesson !== lessonName);
+                setCookie('homework', homework, 365);
+                
                 lessons.splice(index, 1);
                 setCookie('lessons', lessons, 365);
                 display();
@@ -106,9 +121,14 @@ function display() {
         dynamicListDiv.appendChild(hwTitle);
         
         homework.forEach((hw, index) => {
+            const lessonIndex = lessons.indexOf(hw.lesson);
+            if (lessonIndex !== -1) {
+                const isCompleted = loadTaskState(storageKey, `task-${lessonIndex + 1}`);
+                if (isCompleted) return;
+            }
+
             const p = document.createElement('p');
             p.textContent = `${index + 1}. ${hw.lesson}: ${hw.task}`;
-            p.style.cursor = 'pointer';
             p.addEventListener('click', () => {
                 homework.splice(index, 1);
                 setCookie('homework', homework, 365);
@@ -122,22 +142,9 @@ function display() {
 window.addEventListener('load', display);
 
 const numTasks = 8;
-const storageKey = 'schedule_general'; 
-
 const tasks = [];
 for (let i = 1; i <= numTasks; i++) {
     tasks.push({ id: `task-${i}`, name: `Урок ${i} - Домашнє завдання` });
-}
-
-function loadTaskState(key, taskId) {
-    const state = JSON.parse(localStorage.getItem(key) || '{}');
-    return state[taskId] === true;
-}
-
-function saveTaskState(key, taskId, isChecked) {
-    const state = JSON.parse(localStorage.getItem(key) || '{}');
-    state[taskId] = isChecked;
-    localStorage.setItem(key, JSON.stringify(state));
 }
 
 function renderSchedule() {
@@ -166,6 +173,7 @@ function renderSchedule() {
             const taskId = e.target.id;
             const isChecked = e.target.checked;
             saveTaskState(storageKey, taskId, isChecked);
+            
             const taskItem = e.target.closest('.task-item');
             if (taskItem) {
                 if (isChecked) {
@@ -174,6 +182,7 @@ function renderSchedule() {
                     taskItem.classList.remove('completed');
                 }
             }
+            display();
         });
     });
 }

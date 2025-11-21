@@ -180,7 +180,6 @@ body{
     background-color: aliceblue;
 }  
 
-/* --- WORKPLACE LAYOUT --- */
 .workplace {
     position: absolute;
     left: 360px; 
@@ -189,7 +188,6 @@ body{
     bottom: 40px;
     border-radius: 15px;
     background-color: #8CB1B1;
-    /* Змінено на Flex для розташування колонок */
     display: flex;
     gap: 20px;
     padding: 20px;
@@ -202,7 +200,7 @@ body{
     flex-direction: column;
     gap: 30px;
     padding: 20px;
-    flex: 1; /* Займає частину простору */
+    flex: 1;
     min-width: 300px;
     overflow-y: auto;
 }
@@ -210,11 +208,10 @@ body{
 .schedules-wrapper {
     display: flex;
     gap: 15px;
-    flex: 2; /* Займає більше простору для двох таблиць */
+    flex: 2; 
     overflow-x: auto;
 }
 
-/* Динамічний розклад */
 .dynamic-schedule-box {
     flex: 1;
     min-width: 250px;
@@ -226,7 +223,6 @@ body{
     box-sizing: border-box;
 }
 
-/* Статичний розклад */
 .static-schedule-box {
     flex: 1;
     min-width: 250px;
@@ -248,7 +244,6 @@ body{
     width: 100%;
 }
 
-/* --- DARK MODE --- */
 body.dark-mode {
     background-color: #1a1a1a;
 }
@@ -310,7 +305,6 @@ body.dark-mode h1 {
     color: #e0e0e0;
 }
 
-/* --- FORMS --- */
 .text {
     font-size: 18px;
     font-weight: 500;
@@ -365,7 +359,6 @@ h1 {
     font-weight: 600;
 }
 
-/* --- SCHEDULE ITEMS & STARS --- */
 .task-item {
     display: flex;
     justify-content: space-between;
@@ -390,7 +383,6 @@ body.dark-mode .task-item {
     margin-right: 10px; 
 }
 
-/* Checkbox and Star Button Styles */
 .checkbox-wrapper {
     position: relative;
     width: 30px;
@@ -431,7 +423,6 @@ body.dark-mode .task-item {
     color: #ffc107;
 }
 
-/* Dark mode for stars */
 body.dark-mode .star-label {
     background-color: #444;
     border-color: #555;
@@ -444,7 +435,6 @@ body.dark-mode .task-checkbox:checked + .star-label {
     color: #ffc107;
 }
 
-/* Strikethrough effect */
 .task-item.completed .task-name {
     text-decoration: line-through;
     color: #888;
@@ -452,4 +442,17 @@ body.dark-mode .task-checkbox:checked + .star-label {
 
 body.dark-mode .task-item.completed .task-name {
     color: #777;
+}
+
+.dynamic-schedule-box p {
+    padding: 5px 0;
+    cursor: pointer;
+    position: relative;
+}
+
+.dynamic-schedule-box p:hover::after {
+    content: " (видалити)";
+    color: #999;
+    font-size: 0.8em;
+    font-weight: normal;
 }
