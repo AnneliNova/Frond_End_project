@@ -21,8 +21,9 @@ function getCookie(name) {
     return null;
 }
 
-let lessons = getCookie('lessons') || [];
-let homework = getCookie('homework') || [];
+let currentDay = 'Понеділок'; 
+let lessons = [];
+let homework = [];
 
 const addLessonBtn = document.querySelector('.add-lesson-btn');
 const addHomeworkBtn = document.querySelector('.add-homework-btn');
@@ -32,7 +33,19 @@ const homeworkInput = document.querySelector('.add-homework-container .name');
 const dynamicListDiv = document.getElementById('dynamic-list');
 const staticScheduleList = document.getElementById('static-schedule-list');
 const toggleSwitch = document.querySelector('#myToggle');
-const storageKey = 'schedule_general';
+const dayButtons = document.querySelectorAll('.day-btn');
+
+function loadDataForDay(day) {
+    lessons = getCookie('lessons_' + day) || [];
+    homework = getCookie('homework_' + day) || [];
+}
+
+function initDay() {
+    loadDataForDay(currentDay);
+    updateLessonSelect();
+    display();
+    renderSchedule();
+}
 
 const savedTheme = getCookie('theme');
 if (savedTheme === 'dark') {
@@ -47,18 +60,51 @@ if (toggleSwitch) {
     });
 }
 
+dayButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        dayButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentDay = btn.getAttribute('data-day');
+        initDay();
+    });
+});
+
+function setupInputPlaceholder(inputElement, placeholderText) {
+    inputElement.addEventListener('focus', () => {
+        if (inputElement.value === placeholderText) {
+            inputElement.value = '';
+        }
+    });
+    inputElement.addEventListener('blur', () => {
+        if (inputElement.value.trim() === '') {
+            inputElement.value = placeholderText;
+        }
+    });
+}
+
+setupInputPlaceholder(lessonInput, 'Додати урок');
+setupInputPlaceholder(homeworkInput, 'Додати домашку');
+
+function updateLessonSelect() {
+    while (chooseLesson.options.length > 1) {
+        chooseLesson.remove(1);
+    }
+    lessons.forEach(lessonName => {
+        const newOption = document.createElement('option');
+        newOption.value = lessonName;
+        newOption.textContent = lessonName;
+        chooseLesson.appendChild(newOption);
+    });
+}
+
 if (addLessonBtn) {
     addLessonBtn.addEventListener('click', () => {
         const lessonName = lessonInput.value.trim();
         if (lessonName && lessonName !== 'Додати урок') {
             lessons.push(lessonName);
-            setCookie('lessons', lessons, 365);
+            setCookie('lessons_' + currentDay, lessons, 365);
             
-            const newOption = document.createElement('option');
-            newOption.value = lessonName;
-            newOption.textContent = lessonName;
-            chooseLesson.appendChild(newOption);
-            
+            updateLessonSelect();
             lessonInput.value = 'Додати урок';
             display();
         }
@@ -72,22 +118,22 @@ if (addHomeworkBtn) {
         
         if (selectedLesson !== 'example' && homeworkText && homeworkText !== 'Додати домашку') {
             homework.push({ lesson: selectedLesson, task: homeworkText });
-            setCookie('homework', homework, 365);
+            setCookie('homework_' + currentDay, homework, 365);
             homeworkInput.value = 'Додати домашку';
             display();
         }
     });
 }
 
-function loadTaskState(key, taskId) {
-    const state = JSON.parse(localStorage.getItem(key) || '{}');
+function loadTaskState(day, taskId) {
+    const state = JSON.parse(localStorage.getItem('schedule_' + day) || '{}');
     return state[taskId] === true;
 }
 
-function saveTaskState(key, taskId, isChecked) {
-    const state = JSON.parse(localStorage.getItem(key) || '{}');
+function saveTaskState(day, taskId, isChecked) {
+    const state = JSON.parse(localStorage.getItem('schedule_' + day) || '{}');
     state[taskId] = isChecked;
-    localStorage.setItem(key, JSON.stringify(state));
+    localStorage.setItem('schedule_' + day, JSON.stringify(state));
 }
 
 function display() {
@@ -104,10 +150,11 @@ function display() {
             p.addEventListener('click', () => {
                 const lessonName = lessons[index];
                 homework = homework.filter(h => h.lesson !== lessonName);
-                setCookie('homework', homework, 365);
+                setCookie('homework_' + currentDay, homework, 365);
                 
                 lessons.splice(index, 1);
-                setCookie('lessons', lessons, 365);
+                setCookie('lessons_' + currentDay, lessons, 365);
+                updateLessonSelect();
                 display();
             });
             dynamicListDiv.appendChild(p);
@@ -119,27 +166,37 @@ function display() {
         hwTitle.textContent = 'Домашка:';
         hwTitle.style.marginTop = '15px';
         dynamicListDiv.appendChild(hwTitle);
+
+        const lessonTaskCounters = {};
         
         homework.forEach((hw, index) => {
             const lessonIndex = lessons.indexOf(hw.lesson);
+            
             if (lessonIndex !== -1) {
-                const isCompleted = loadTaskState(storageKey, `task-${lessonIndex + 1}`);
+                const isCompleted = loadTaskState(currentDay, `task-${lessonIndex + 1}`);
                 if (isCompleted) return;
             }
 
+            if (!lessonTaskCounters[hw.lesson]) {
+                lessonTaskCounters[hw.lesson] = 0;
+            }
+            lessonTaskCounters[hw.lesson]++;
+            
+            const lessonNumber = lessonIndex + 1;
+            const taskCounter = lessonTaskCounters[hw.lesson];
+            const displayIndex = `${lessonNumber}.${taskCounter}`;
+
             const p = document.createElement('p');
-            p.textContent = `${index + 1}. ${hw.lesson}: ${hw.task}`;
+            p.textContent = `${displayIndex} (${hw.lesson}): ${hw.task}`;
             p.addEventListener('click', () => {
                 homework.splice(index, 1);
-                setCookie('homework', homework, 365);
+                setCookie('homework_' + currentDay, homework, 365);
                 display();
             });
             dynamicListDiv.appendChild(p);
         });
     }
 }
-
-window.addEventListener('load', display);
 
 const numTasks = 8;
 const tasks = [];
@@ -151,7 +208,7 @@ function renderSchedule() {
     staticScheduleList.innerHTML = '';
     
     tasks.forEach(task => {
-        const isChecked = loadTaskState(storageKey, task.id);
+        const isChecked = loadTaskState(currentDay, task.id);
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('task-item');
         if (isChecked) {
@@ -172,7 +229,7 @@ function renderSchedule() {
         checkbox.addEventListener('change', (e) => {
             const taskId = e.target.id;
             const isChecked = e.target.checked;
-            saveTaskState(storageKey, taskId, isChecked);
+            saveTaskState(currentDay, taskId, isChecked);
             
             const taskItem = e.target.closest('.task-item');
             if (taskItem) {
@@ -187,4 +244,4 @@ function renderSchedule() {
     });
 }
 
-renderSchedule();
+initDay();
