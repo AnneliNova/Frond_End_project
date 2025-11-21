@@ -6,7 +6,7 @@
     font-family: 'Montserrat';
 }
 
-header{
+.header-1{
   width: 100%;
   height: 5em;
   background: linear-gradient(90deg, #727272 0%, #C4C3C3 69.23%, #727272 100%);
