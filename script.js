@@ -29,7 +29,8 @@ const addHomeworkBtn = document.querySelector('.add-homework-btn');
 const lessonInput = document.querySelector('.add-lesson-container .name');
 const chooseLesson = document.querySelector('.choose-lesson');
 const homeworkInput = document.querySelector('.add-homework-container .name');
-const scheduleDiv = document.querySelector('.shedule');
+const dynamicListDiv = document.getElementById('dynamic-list');
+const staticScheduleList = document.getElementById('static-schedule-list');
 const toggleSwitch = document.querySelector('#myToggle');
 
 const savedTheme = getCookie('theme');
@@ -78,12 +79,12 @@ if (addHomeworkBtn) {
 }
 
 function display() {
-    scheduleDiv.innerHTML = '<h3>Розклад:</h3>';
+    dynamicListDiv.innerHTML = ''; 
     
     if (lessons.length > 0) {
         const lessonsTitle = document.createElement('h4');
         lessonsTitle.textContent = 'Уроки:';
-        scheduleDiv.appendChild(lessonsTitle);
+        dynamicListDiv.appendChild(lessonsTitle);
         
         lessons.forEach((lesson, index) => {
             const p = document.createElement('p');
@@ -94,7 +95,7 @@ function display() {
                 setCookie('lessons', lessons, 365);
                 display();
             });
-            scheduleDiv.appendChild(p);
+            dynamicListDiv.appendChild(p);
         });
     }
     
@@ -102,7 +103,7 @@ function display() {
         const hwTitle = document.createElement('h4');
         hwTitle.textContent = 'Домашка:';
         hwTitle.style.marginTop = '15px';
-        scheduleDiv.appendChild(hwTitle);
+        dynamicListDiv.appendChild(hwTitle);
         
         homework.forEach((hw, index) => {
             const p = document.createElement('p');
@@ -113,7 +114,7 @@ function display() {
                 setCookie('homework', homework, 365);
                 display();
             });
-            scheduleDiv.appendChild(p);
+            dynamicListDiv.appendChild(p);
         });
     }
 }
@@ -121,7 +122,6 @@ function display() {
 window.addEventListener('load', display);
 
 const numTasks = 8;
-const scheduleList = document.getElementById('schedule-list');
 const storageKey = 'schedule_general'; 
 
 const tasks = [];
@@ -141,41 +141,41 @@ function saveTaskState(key, taskId, isChecked) {
 }
 
 function renderSchedule() {
-    scheduleList.innerHTML = '';
+    staticScheduleList.innerHTML = '';
     
     tasks.forEach(task => {
         const isChecked = loadTaskState(storageKey, task.id);
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('task-item');
+        if (isChecked) {
+            itemDiv.classList.add('completed');
+        }
 
-        const itemHTML = `
-            <div class="task-item">
+        itemDiv.innerHTML = `
+            <span class="task-name">${task.name}</span>
+            <div class="checkbox-wrapper">
                 <input type="checkbox" id="${task.id}" class="task-checkbox" ${isChecked ? 'checked' : ''}>
-                
-                <span class="task-name">${task.name}</span>
-                
-                <label for="${task.id}" class="checkbox-label">★</label>
+                <label for="${task.id}" class="star-label">★</label>
             </div>
         `;
-        scheduleList.innerHTML += itemHTML;
+        staticScheduleList.appendChild(itemDiv);
     });
 
     document.querySelectorAll('.task-checkbox').forEach(checkbox => {
         checkbox.addEventListener('change', (e) => {
-            saveTaskState(storageKey, e.target.id, e.target.checked);
+            const taskId = e.target.id;
+            const isChecked = e.target.checked;
+            saveTaskState(storageKey, taskId, isChecked);
+            const taskItem = e.target.closest('.task-item');
+            if (taskItem) {
+                if (isChecked) {
+                    taskItem.classList.add('completed');
+                } else {
+                    taskItem.classList.remove('completed');
+                }
+            }
         });
     });
 }
 
 renderSchedule();
-
-function closeModal() {
-let modal = document.getElementById('contactModal');
-let overlay = document.getElementById('modalOverlay'); 
- 
-if (modal) {
-    modal.style.display = 'none';
-}
-if (overlay) {
-    overlay.style.display = 'none';
-}
-window.location.href = 'index.html';
-}
