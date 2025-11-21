@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="uk">
     <head>
         <meta charset="UTF-8">
         <title>Online-register</title>
@@ -24,7 +25,7 @@
         <div class="days main">
             <h3>Виберіть День</h3>
             <div class="days-container">
-                <button class="day-btn" data-day="Понеділок">Пн</button>
+                <button class="day-btn active" data-day="Понеділок">Пн</button>
                 <button class="day-btn" data-day="Вівторок">Вт</button>
                 <button class="day-btn" data-day="Середа">Ср</button>
                 <button class="day-btn" data-day="Четвер">Чт</button>
@@ -49,10 +50,17 @@
                 </div>
             </div>
             
-            <div class="shedule">
-                <div class="container">
-                    <h1>ВАШ РОЗКЛАД</h1>
-                    <div id="schedule-list">
+            <div class="schedules-wrapper">
+                <div class="dynamic-schedule-box">
+                    <h3>Розклад:</h3>
+                    <div id="dynamic-list"></div>
+                </div>
+
+                <div class="static-schedule-box">
+                    <div class="container">
+                        <h1>ВАШ РОЗКЛАД</h1>
+                        <div id="static-schedule-list">
+                        </div>
                     </div>
                 </div>
             </div>
