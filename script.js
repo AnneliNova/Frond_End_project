@@ -246,15 +246,38 @@ function renderSchedule() {
 
 initDay();
 
-function closeModal() {
-let modal = document.getElementById('contactModal');
-let overlay = document.getElementById('modalOverlay'); 
-    
-if (modal) {
-    modal.style.display = 'none';
+// Contacts Modal functionality
+const contactsLink = document.getElementById('contacts-link');
+const contactsModal = document.getElementById('contacts-modal');
+const closeContactsBtn = document.getElementById('close-contacts');
+
+// Open modal when Contacts link is clicked
+if (contactsLink && contactsModal) {
+    contactsLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        contactsModal.style.display = 'flex';
+    });
 }
-if (overlay) {
-    overlay.style.display = 'none';
+
+// Close modal when X button is clicked
+if (closeContactsBtn && contactsModal) {
+    closeContactsBtn.addEventListener('click', function() {
+        contactsModal.style.display = 'none';
+    });
 }
-window.location.href = 'index.html';
+
+// Close modal when clicking outside the modal content
+if (contactsModal) {
+    contactsModal.addEventListener('click', function(e) {
+        if (e.target === contactsModal) {
+            contactsModal.style.display = 'none';
+        }
+    });
 }
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && contactsModal && contactsModal.style.display === 'flex') {
+        contactsModal.style.display = 'none';
+    }
+});

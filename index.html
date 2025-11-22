@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Online-register</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -13,7 +14,7 @@
         <div class="header-2">
             <p class="menu title-2">Розклад занять</p>
             <a href='#' class="menu title-3">Home</a>
-            <a href="contacts.html" class="menu title-3">Contact</a>
+            <a href="#" class="menu title-3" id="contacts-link">Contact</a>
 
             <label class="switch menu title-3">
                 <input type="checkbox" class="toggle" id="myToggle">
@@ -64,8 +65,44 @@
                     </div>
                 </div>
             </div>
-
         </div>
+
+        <!-- Contacts Modal -->
+        <div class="modal-overlay" id="contacts-modal" style="display: none;">
+            <div class="contact-modal">
+                <header class="modal-header">
+                    <h2 class="contact-title">Наші контакти</h2>
+                    <span class="close-button" id="close-contacts">&times;</span>
+                </header>
+                <div class="modal-content">
+                    <a href="https:" class="link-for-social">
+                        <div class="social-link">
+                            <i class="fab fa-instagram social-icon"></i>
+                            <span class="social-name">@exemple</span>
+                        </div>
+                    </a>
+                    <a href="https:" class="link-for-social">
+                        <div class="social-link">
+                            <i class="fab fa-telegram-plane social-icon"></i>
+                            <span class="social-name">@exemple</span>
+                        </div>
+                    </a>
+                    <a href="https:" class="link-for-social">
+                        <div class="social-link">
+                            <i class="fab fa-facebook social-icon"></i>
+                            <span class="social-name">@exemple</span>
+                        </div>
+                    </a>
+                    <a href="tel:+380973020069" class="link-for-social">
+                        <div class="social-link">
+                            <i class="fas fa-phone social-icon"></i>
+                            <span class="social-name">Тел.: 098 XXX XX XX</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
         </main>
         <script src="script.js"></script>
     </body>
